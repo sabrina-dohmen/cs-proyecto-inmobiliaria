@@ -1,0 +1,160 @@
+{
+	"info": {
+		"_postman_id": "a8e911ac-489e-4779-af2e-ac8d5fa77ea7",
+		"name": "API Inmobiliaria",
+		"description": "Request para el testeo de la API 'Inmobiliaria' desarrollada en Node.js con base de datos MSSQL",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET ALL Alquileres",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/alquiler/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"alquiler",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET BY ID Alquiler",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/alquiler/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"alquiler",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET BY FILTER Alquiler",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"activo\": null,\r\n    \"localidadId\": null,\r\n    \"departamentoId\": null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/alquiler/filter",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"alquiler",
+						"filter"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SAVE Alquiler",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"inmuebleId\": 1,\r\n    \"inquilinoId\": 3,\r\n    \"fechaInicio\": \"{{$randomDateRecent}}\",\r\n    \"fechaFinal\": \"{{$randomDateFuture}}\",\r\n    \"duracionContrato\": 12,\r\n    \"porcentajeAumento\": 0.15,\r\n    \"periodoAumento\": 12\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/alquiler/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"alquiler",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE Alquiler",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"inmuebleId\": 1,\r\n    \"inquilinoId\": 3,\r\n    \"fechaInicio\": \"{{$randomDateRecent}}\",\r\n    \"fechaFinal\": \"{{$randomDateFuture}}\",\r\n    \"duracionContrato\": 12,\r\n    \"porcentajeAumento\": 0.30,\r\n    \"periodoAumento\": 55,\r\n    \"activo\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/alquiler/13",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"alquiler",
+						"13"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Alquiler",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/alquiler/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"alquiler",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

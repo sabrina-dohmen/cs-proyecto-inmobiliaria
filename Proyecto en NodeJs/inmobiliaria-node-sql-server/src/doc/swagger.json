@@ -1,0 +1,296 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "NodeJS SQL Server - Inmobiliaria API"
+    },
+    "security": [
+        {
+            "bearerAuth": []
+        }
+    ],
+    "basePath": "/",
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/login": {
+            "post": {
+                "summary": "Crea el Token al loggearse con usuario",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "email",
+                                "pass"
+                            ],
+                            "properties": {
+                                "email": {
+                                    "type": "string",
+                                    "example": "sabri@email.com"
+                                },
+                                "pass": {
+                                    "type": "string",
+                                    "example": "sabri1234"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/alquiler/": {
+            "get": {
+                "summary": "Trae una lista de Alquileres",
+                "consumes": "application/json",
+                "produces": [
+                    "application/json"
+                ],
+                "security": {
+                    "basicAuth": []
+                },
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Registrar un Alquiler",
+                "consumes": "application/json",
+                "produces": "application/json",
+                "security": {
+                    "basicAuth": []
+                },
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/Alquiler"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok"
+                    }
+                }
+            }
+        },
+        "/alquiler/{id}": {
+            "get": {
+                "summary": "Trae un Alquiler por ID",
+                "consumes": "application/json",
+                "produces": "application/json",
+                "security": {
+                    "basicAuth": []
+                },
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "type": "integer",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Actualizar por ID un Alquiler registrado",
+                "consumes": "application/json",
+                "produces": "application/json",
+                "security": {
+                    "basicAuth": []
+                },
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "type": "integer",
+                        "required": true
+                    },
+                    {
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/Alquiler"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Desactivar por ID un Alquiler registrado",
+                "consumes": "application/json",
+                "produces": "application/json",
+                "security": {
+                    "basicAuth": []
+                },
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "type": "integer",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok"
+                    }
+                }
+            }
+        },
+        "/alquiler/filter": {
+            "post": {
+                "summary": "Trae Lista de Alquileres por filtro",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": "application/json",
+                "security": {
+                    "basicAuth": []
+                },
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "requestBody",
+                        "name": "activo",
+                        "type": "string",
+                        "default": 0,
+                        "required": true
+                    },
+                    {
+                        "in": "requestBody",
+                        "name": "localidadId",
+                        "type": "string",
+                        "default": 2,
+                        "required": true
+                    },
+                    {
+                        "in": "requestBody",
+                        "name": "departamentoId",
+                        "type": "string",
+                        "default": 2,
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "FilterBody": {
+            "type": "object",
+            "properties": {
+                "activo": {
+                    "type": "number",
+                    "example": 0
+                },
+                "localidadId": {
+                    "type": "number"
+                },
+                "departamentoId": {
+                    "type": "number"
+                }
+            }
+        },
+        "Alquiler": {
+            "type": "object",
+            "properties": {
+                "inmuebleId": {
+                    "type": "number",
+                    "example": 1
+                },
+                "inquilinoId": {
+                    "type": "number",
+                    "example": 3
+                },
+                "fechaInicio": {
+                    "type": "date",
+                    "example": "2021-11-22T00:00:00.000Z"
+                },
+                "fechaFinal": {
+                    "type": "date",
+                    "example": "2022-06-30T00:00:00.000Z"
+                },
+                "duracionContrato": {
+                    "type": "number",
+                    "example": 12
+                },
+                "porcentajeAumento": {
+                    "type": "number",
+                    "example": 0.15
+                },
+                "periodoAumento": {
+                    "type": "number",
+                    "example": 12
+                }
+            }
+        }
+    }
+}
